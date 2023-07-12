@@ -8,6 +8,7 @@
   const loading = ref(true);
   const columnDefs = ref([]);
   const rowData = ref([]);
+  const blank = ref('')
   const isDataFetched = ref(false);
   const url = 'https://dummyjson.com/users?limit=5&skip=10&select=firstName,age,email,phone'; 
   watchEffect(()=>{
