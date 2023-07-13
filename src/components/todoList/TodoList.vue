@@ -12,7 +12,7 @@ const todoItem = ref({
 });
 
 const isValidTodo = computed(() => todoItem.value.text.trim() !== '');
-const remainingTodosCounter = computed(() => todos.value.filter((item) => !item.isCompleted).length);
+const remainingTodosCounter = computed(() => originalTodos.value.filter((item) => !item.isCompleted).length);
 const filteredTodos = computed(() => todos.value.filter((item) => !deletedTodos.value.includes(item)));
 const addNewTodo = () => {
   const id = todos.value.length + 1;
@@ -77,7 +77,7 @@ const showAllTodos = () => {
         </ul>
       </div>
     </div>
-    <span style="font-weight: 700; margin-top: 20px;">Todos Left: {{ remainingTodosCounter }}</span>
+    <!-- <span style="font-weight: 700; margin-top: 20px;">Todos Left: {{ remainingTodosCounter }}</span> -->
     <div style="display: flex">
       <button @click="showAllTodos">Show All</button>
       <button @click="showCompletedTodos">Completed</button>
