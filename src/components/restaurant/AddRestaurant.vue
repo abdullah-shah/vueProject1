@@ -41,11 +41,11 @@ const addDish = () => {
         <h2 >Add New Restaurant</h2>
         <form @submit.prevent="addRestaurant" novalidate>
             <label for="restaurantName">Restaurant Name</label>
-            <input id="restaurantName" v-model="restaurant.name" @input="isTouchedName = True"/>
+            <input id="restaurantName" v-model="restaurant.name" @input="isTouchedName = True" required/>
             <span v-if="isTouchedName && !isValidName" class="error">Name is required</span>
             <br>
             <label for="restaurantAddress">Restaurant Address</label>
-            <input id="restaurantAddress" v-model="restaurant.address" @input="isTouchedAddress = True"/>
+            <input id="restaurantAddress" v-model="restaurant.address" @input="isTouchedAddress = True" required/>
             <span v-if=" isTouchedAddress && !isValidAddress" class="error">Address is required</span>
             <br>
             <label for="dishes">Dishes</label>

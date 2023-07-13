@@ -8,6 +8,7 @@ import {ref} from 'vue';
         <ul>
           <li>
             <router-link to="/">Home</router-link>
+            <router-link to="/TodoList">TodoList</router-link>
             <router-link to="/AddRestaurant">Add New Restaurant</router-link>
             <router-link to="/CustomGrid">AG Grid Component</router-link>
           </li>
