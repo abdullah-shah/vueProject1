@@ -9,6 +9,7 @@ const todoItem = ref({
   id: 0,
   text: '',
   isCompleted: false,
+  filterKey: 'all',
 });
 
 const isValidTodo = computed(() => todoItem.value.text.trim() !== '');
@@ -24,6 +25,7 @@ const addNewTodo = () => {
 const deleteTodo = (todo) => {
   deletedTodos.value.push(todo);
   todos.value = todos.value.filter((item) => item !== todo);
+  originalTodos.value = originalTodos.value.filter((item) => item !== todo);
 };
 const toggleComplete = (todo) => {
   todos.value = todos.value.map((item) => {
@@ -47,13 +49,7 @@ const showCompletedTodos = () => {
   todos.value = completedTodos.value;
 };
 const showAllTodos = () => {
-  todos.value = originalTodos.value.map((item) => {
-    const todo = todos.value.find((t) => t.id === item.id);
-    if (todo) {
-      item.isCompleted = todo.isCompleted;
-    }
-    return item;
-  });
+  todos.value = originalTodos.value.map((item) => item);
 };
 </script>
 
@@ -77,7 +73,7 @@ const showAllTodos = () => {
         </ul>
       </div>
     </div>
-    <!-- <span style="font-weight: 700; margin-top: 20px;">Todos Left: {{ remainingTodosCounter }}</span> -->
+    <span style="font-weight: 700; margin-top: 20px;">Todos Left: {{ remainingTodosCounter }}</span>
     <div style="display: flex">
       <button @click="showAllTodos">Show All</button>
       <button @click="showCompletedTodos">Completed</button>
