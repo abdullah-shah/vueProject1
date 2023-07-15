@@ -44,7 +44,7 @@ const resetForm = () => {
   };
   isTouchedText.value = false;
 };
-const completedTodos = computed(() => todos.value.filter((item) => item.isCompleted === true));
+const completedTodos = computed(() => originalTodos.value.filter((item) => item.isCompleted === true));
 const allTodos = computed(() => originalTodos.value.map((item) => item));
 const activeTodos = computed(() => originalTodos.value.filter((item) => item.isCompleted === false));
 const clearComplete = computed(() => originalTodos.value.filter((item) => item.isCompleted === false));
