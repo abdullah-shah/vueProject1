@@ -60,7 +60,11 @@ const showAllTodos = () => {
     <div class="form">
       <form @submit.prevent="addNewTodo" novalidate>
         <label for="todo">Add New Task:</label>
-        <input v-model="todoItem.text" @input="isTouchedText = true" required />
+        <input 
+        v-model="todoItem.text" 
+        @input="isTouchedText = true"
+        id="todo" 
+        required />
         <button :disabled="!isValidTodo">Add Todo</button>
       </form>
       <div v-if="todos.length > 0" id="todo-list-section">
