@@ -66,7 +66,6 @@ const clearAllComplete = () => {
 
 <template>
   <div class="container">
-    {{ todos }}
     <h2 style="margin-bottom: 2rem; font-weight: 500;">To Do List</h2>
 
     <div class="form">
