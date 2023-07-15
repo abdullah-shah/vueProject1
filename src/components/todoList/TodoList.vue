@@ -17,7 +17,8 @@ const remainingTodosCounter = computed(() => originalTodos.value.filter((item) =
 const filteredTodos = computed(() => todos.value.filter((item) => !deletedTodos.value.includes(item)));
 const addNewTodo = () => {
   const id = todos.value.length + 1;
-  const newTodo = { ...todoItem.value, id };
+  const isCompleted = false;
+  const newTodo = { ...todoItem.value, id,isCompleted };
   todos.value.push(newTodo);
   originalTodos.value.push(newTodo);
   resetForm();
@@ -45,16 +46,27 @@ const resetForm = () => {
 };
 const completedTodos = computed(() => todos.value.filter((item) => item.isCompleted === true));
 const allTodos = computed(() => originalTodos.value.map((item) => item));
+const activeTodos = computed(() => originalTodos.value.filter((item) => item.isCompleted === false));
+const clearComplete = computed(() => originalTodos.value.filter((item) => item.isCompleted === false));
+
 const showCompletedTodos = () => {
   todos.value = completedTodos.value;
 };
 const showAllTodos = () => {
-  todos.value = originalTodos.value.map((item) => item);
+  todos.value = allTodos.value;
 };
+const showActive = () => {
+  todos.value = activeTodos.value;
+};
+const clearAllComplete = () => {
+    todos.value = todos.value.filter((item)=> !item.isCompleted)
+    originalTodos.value = originalTodos.value.filter((item)=> !item.isCompleted)
+}
 </script>
 
 <template>
   <div class="container">
+    {{ todos }}
     <h2 style="margin-bottom: 2rem; font-weight: 500;">To Do List</h2>
 
     <div class="form">
@@ -78,9 +90,14 @@ const showAllTodos = () => {
       </div>
     </div>
     <span style="font-weight: 700; margin-top: 20px;">Todos Left: {{ remainingTodosCounter }}</span>
-    <div style="display: flex">
+    <div style="display: flex;margin-top: 1rem;">
       <button @click="showAllTodos">Show All</button>
+      <button @click="showActive">Active</button>
       <button @click="showCompletedTodos">Completed</button>
+      <span 
+      style="margin:0.5 rem; padding: 0 0.5rem;cursor: pointer;color:sandybrown"
+      @click="clearAllComplete">
+      Clear All Complete</span>
     </div>
   </div>
 </template>
